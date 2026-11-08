@@ -1,0 +1,27 @@
+{
+  "name": "buynova",
+  "version": "1.0.0",
+  "description": "BuyNova - Smart E-Commerce Platform & Order Management",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "lint": "node -c api/*.js server.js",
+    "build": "echo 'Static storefront and server ready'"
+  },
+  "keywords": [
+    "buynova",
+    "ecommerce",
+    "storefront",
+    "supabase",
+    "order-tracking",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Lakshya Chandra <https://github.com/Lakshya-tech2026>",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}

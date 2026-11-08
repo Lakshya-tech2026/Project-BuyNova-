@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Support | BuyNova</title>
+<meta name="description" content="Contact BuyNova customer support for questions about products, shipping, returns, and order status.">
+<meta name="theme-color" content="#080808">
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#f8fafc;background:#080808}.wrap{max-width:920px;margin:0 auto;padding:32px 20px 50px}.back{display:inline-block;margin-bottom:20px;color:#9fe8ff;text-decoration:none;font-weight:800}.brand{font-weight:950;font-size:21px;margin-bottom:12px}.card{background:#2c3236;border:1px solid #58636a;border-radius:22px;padding:30px;box-shadow:0 18px 50px #0004}h1{margin:0 0 10px;font-size:38px;line-height:1.1}h2{margin:28px 0 10px;font-size:20px}p{line-height:1.7;color:#d4dbe0}.muted{color:#aeb8bf}.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-weight:750;font-size:14px;color:#eef3f6}input,textarea{width:100%;border:1px solid #728089;border-radius:13px;background:#080808;color:#fff;padding:14px 15px;font:inherit;outline:none}input:focus,textarea:focus{border-color:#9fe8ff;box-shadow:0 0 0 3px #9fe8ff22}textarea{min-height:145px;resize:vertical}.actions{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}button{border:0;border-radius:13px;padding:14px 22px;background:#fff;color:#171b1e;font:inherit;font-weight:900;cursor:pointer}button:disabled{opacity:.6;cursor:wait}.status{min-height:24px;font-weight:700}.success{color:#9ff2bf}.error{color:#ffaaa8}.email{color:#9fe8ff;text-decoration:none;font-weight:850}.links{display:flex;gap:18px;flex-wrap:wrap}.links a{color:#9fe8ff;text-decoration:none;font-weight:800}footer{margin-top:28px;color:#9aa5ac;font-size:13px}@media(max-width:650px){.wrap{padding:22px 14px 40px}.card{padding:22px}h1{font-size:32px}.support-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+<style>
+:root{color-scheme:light}body{color:#080808;background:#fff}.back,.email,.links a{color:#8B35FF}.card{background:#fff;border-color:#e7ebf0;box-shadow:0 18px 50px #08080812}p{color:#475467}.muted,footer{color:#667085}label{color:#080808}input,textarea{border-color:#d0d5dd;background:#fff;color:#080808}input:focus,textarea:focus{border-color:#B56BFF;box-shadow:0 0 0 3px #B56BFF33}button{background:linear-gradient(135deg,#8B35FF,#B56BFF);color:#fff}button:disabled{opacity:.6}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="/">← Back to Store</a>
+<div class="brand" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+  <img src="/assets/logo.png" alt="BuyNova" style="height:36px;width:36px;border-radius:8px;object-fit:cover;">
+  <span>Buy<span style="color:#8B35FF">Nova</span></span>
+</div>
+<div class="card">
+<h1>Customer Support</h1>
+<p>Need help with an order, product, shipping or return? Send us a message and our support team will receive it directly.</p>
+
+<form id="supportForm" novalidate>
+  <div class="support-grid">
+    <div class="field">
+      <label for="name">Full name *</label>
+      <input id="name" name="name" autocomplete="name" maxlength="100" required placeholder="Your full name">
+    </div>
+    <div class="field">
+      <label for="email">Email address *</label>
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="160" required placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="phone">Phone number</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="Optional">
+    </div>
+    <div class="field">
+      <label for="orderNumber">Order number</label>
+      <input id="orderNumber" name="orderNumber" maxlength="80" placeholder="Example: BN-ABC12345">
+    </div>
+    <div class="field full">
+      <label for="message">How can we help? *</label>
+      <textarea id="message" name="message" maxlength="3000" required placeholder="Describe your question or issue"></textarea>
+    </div>
+    <div class="field" style="display:none" aria-hidden="true">
+      <label for="website">Website</label>
+      <input id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+  </div>
+  <div class="actions">
+    <button id="sendBtn" type="submit">Send Message</button>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </div>
+</form>
+
+<h2>Email Support</h2>
+<p>If you prefer email, you can contact us at <a class="email" href="mailto:support.buynova@gmail.com">support.buynova@gmail.com</a>.</p>
+
+<h2>Helpful links</h2>
+<div class="links">
+  <a href="/shipping/">Shipping Policy</a>
+  <a href="/returns/">Returns & Refunds</a>
+</div>
+</div>
+<footer>© 2026 BuyNova. All rights reserved.</footer>
+</main>
+<script>
+const form = document.getElementById('supportForm');
+const button = document.getElementById('sendBtn');
+const status = document.getElementById('status');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  status.textContent = '';
+  status.className = 'status';
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  button.disabled = true;
+  button.textContent = 'Sending…';
+  const data = Object.fromEntries(new FormData(form).entries());
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || 'Could not send your request.');
+    status.textContent = result.message || 'Your message has been sent.';
+    status.className = 'status success';
+    form.reset();
+  } catch (error) {
+    status.textContent = error.message || 'Could not send your request. Please email our support team.';
+    status.className = 'status error';
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Send Message';
+  }
+});
+</script>
+</body>
+</html>
